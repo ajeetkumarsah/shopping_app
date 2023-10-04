@@ -5,7 +5,7 @@ import 'package:new_app/model/product_model.dart';
 import 'package:new_app/view/screens/cart_screen.dart';
 import 'package:new_app/view/widgets/cart_item.dart';
 
-import '../controller/home_controller.dart';
+import '../../controller/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
