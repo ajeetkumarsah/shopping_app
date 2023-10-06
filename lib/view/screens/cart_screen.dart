@@ -20,11 +20,13 @@ class CartScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            leading: GestureDetector(
-              onTap: () => Get.back(),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-                child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
+            leading: IconButton(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              onPressed: () => Get.back(),
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                size: 20,
+                color: AppColors.primary,
               ),
             ),
             title: Text(
@@ -64,59 +66,62 @@ class CartScreen extends StatelessWidget {
                         );
                       },
                     ),
-          bottomSheet: Container(
-            color: AppColors.lightGrey,
-            height: 60,
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Total : ${ctlr.totalPrice.toStringAsFixed(2)}',
-                    style: GoogleFonts.acme(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.primary,
-                  ),
+          bottomSheet: ctlr.cartProducts.isNotEmpty
+              ? Container(
+                  color: AppColors.lightGrey,
+                  height: 60,
+                  width: double.infinity,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   child: Row(
                     children: [
-                      Text(
-                        'Checkout',
-                        style: GoogleFonts.actor(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          'Total : ${ctlr.totalPrice.toStringAsFixed(2)}',
+                          style: GoogleFonts.acme(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 12, right: 4),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.white,
-                        ),
-                        padding: const EdgeInsets.all(4),
-                        child: const Icon(
-                          CupertinoIcons.forward,
-                          size: 16,
+                          borderRadius: BorderRadius.circular(10),
                           color: AppColors.primary,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Checkout',
+                              style: GoogleFonts.actor(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 12, right: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Colors.white,
+                              ),
+                              padding: const EdgeInsets.all(4),
+                              child: const Icon(
+                                CupertinoIcons.forward,
+                                size: 16,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ),
+                )
+              : const SizedBox(),
         );
       },
     );
